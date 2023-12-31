@@ -11,33 +11,33 @@ pub struct Cli {
 
 #[derive(Debug, Subcommand)]
 pub enum Commands {
-    /// download and activate the specified bun version
+    /// Download and activate the specified Bun version
     #[command(arg_required_else_help = true)]
     Install {
-        /// the specified bun version to install
+        /// The specified Bun version to install
         version: String,
     },
 
-    /// activate the specified bun version in the current shell
+    /// Activate the specified Node version in the current shell
     #[command(arg_required_else_help = true)]
     Use {
-        /// the specified bun version to use
+        /// The specified Bun version to use
         version: String,
     },
 
-    /// list installed bun versions
+    /// List installed Bun versions
     Ls,
 
-    /// list available bun versions to install
+    /// List available Bun versions to install
     LsRemote,
 
-    /// print the currently-active Node version
+    /// Print the currently-active Node version
     Current,
 
-    /// uninstall the specified bun version
+    /// Uninstall the specified Node version
     #[command(arg_required_else_help = true)]
     Uninstall {
-        /// the specified Bun version to uninstall
+        /// The specified Bun version to uninstall
         version: String,
     },
 }

@@ -1,6 +1,11 @@
 mod args;
+mod cmd;
+mod http;
 
 use args::{Cli, Commands};
+
+use cmd::LsRemoteCommand;
+
 use clap::Parser;
 
 fn main() {
@@ -10,7 +15,9 @@ fn main() {
         Commands::Install { version } => todo!(),
         Commands::Use { version } => todo!(),
         Commands::Ls => todo!(),
-        Commands::LsRemote => todo!(),
+        Commands::LsRemote => {
+            LsRemoteCommand::list_remote_versions();
+        }
         Commands::Current => todo!(),
         Commands::Uninstall { version } => todo!(),
     }
