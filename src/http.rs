@@ -13,7 +13,7 @@ pub struct BunTag {
 
 pub struct HTTPRequest;
 impl HTTPRequest {
-    pub fn download_zip(url: &str, path: &Path) -> Result<(), Box<dyn Error>> {
+    pub fn download_zip(url: &str, path: &Path) -> Result<Vec<u8>, Box<dyn Error>> {
         let res = get(url).call();
 
         if res.is_err() {
@@ -31,7 +31,7 @@ impl HTTPRequest {
 
         println!("Version downloaded successfully");
 
-        Ok(())
+        Ok(buffer)
     }
     pub fn bun_registry() -> Result<Vec<BunTag>, Box<dyn Error>> {
         let res = get("https://api.github.com/repos/oven-sh/bun/git/refs/tags")

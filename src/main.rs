@@ -15,7 +15,8 @@ use clap::Parser;
 use installer::Installer;
 
 fn main() {
-    Installer::install_version("v0.5.0".to_string());
+    let buff = Installer::install_version("v0.5.0".to_string()).unwrap();
+    Installer::unzip_version("v0.5.0".to_string(), buff);
     /*
     let args = Cli::parse();
 
