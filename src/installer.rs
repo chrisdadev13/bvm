@@ -6,16 +6,17 @@ use crate::http;
 
 pub struct Installer;
 impl Installer {
+    pub fn unzip_version(version: String) {}
     pub fn install_version(version: String) {
         self::Installer::create_versions_dir();
 
-        create_dir(dirs::home_dir().unwrap().join(format!(".bvm/{}", version)));
+        let _ = create_dir(dirs::home_dir().unwrap().join(format!(".bvm/{}", version)));
 
         let version_dir = dirs::home_dir()
             .unwrap()
             .join(format!(".bvm/{}/bun.zip", version));
 
-        let version_path = version_dir.as_path();
+        let temp_zip_file = version_dir.as_path();
 
         match http::HTTPRequest::download_zip(
             format!(
@@ -23,7 +24,7 @@ impl Installer {
                 version
             )
             .as_str(),
-            version_path,
+            temp_zip_file,
         ) {
             Ok(_) => {
                 println!("Success");
