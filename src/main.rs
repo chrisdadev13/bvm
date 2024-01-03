@@ -1,6 +1,10 @@
 mod args;
 mod cmd;
 mod http;
+mod installer;
+mod versions;
+
+use std::env;
 
 use args::{Cli, Commands};
 
@@ -8,7 +12,11 @@ use cmd::LsRemoteCommand;
 
 use clap::Parser;
 
+use installer::Installer;
+
 fn main() {
+    Installer::install_version("v0.5.0".to_string());
+    /*
     let args = Cli::parse();
 
     match args.command {
@@ -21,4 +29,5 @@ fn main() {
         Commands::Current => todo!(),
         Commands::Uninstall { version } => todo!(),
     }
+    */
 }
