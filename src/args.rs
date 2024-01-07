@@ -34,7 +34,7 @@ pub enum Commands {
     /// Print the currently-active Bun version
     Current,
 
-    /// Uninstall the specified Node version
+    /// Uninstall the specified Bun version
     #[command(arg_required_else_help = true)]
     Uninstall {
         /// The specified Bun version to uninstall
