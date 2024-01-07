@@ -1,5 +1,5 @@
 use dirs::home_dir;
-use std::fs::{create_dir, create_dir_all, rename, set_permissions, File, Permissions};
+use std::fs::{create_dir, create_dir_all, set_permissions, File, Permissions};
 use std::io::copy;
 use std::path::Path;
 

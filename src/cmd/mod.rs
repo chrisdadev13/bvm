@@ -1,5 +1,5 @@
 mod install;
-mod ls_remote;
+mod list;
 
 pub use install::InstallCommand;
-pub use ls_remote::LsRemoteCommand;
+pub use list::LsCommand;

@@ -15,6 +15,7 @@ impl InstallCommand {
             return;
         }
 
+        println!("bvm install {} ", version);
         Installer::install_version(version.clone());
         Installer::unzip_version(version.clone());
         Versions::clean_dir(version.clone());
