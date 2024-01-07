@@ -7,7 +7,7 @@ mod versions;
 
 use args::{Cli, Commands};
 
-use cmd::{InstallCommand, LsCommand};
+use cmd::{InstallCommand, LsCommand, Use};
 
 use clap::Parser;
 
@@ -18,7 +18,9 @@ fn main() {
         Commands::Install { version } => {
             InstallCommand::install_version(version);
         }
-        Commands::Use { version } => todo!(),
+        Commands::Use { version } => {
+            Use::use_command(version);
+        }
         Commands::Ls => todo!(),
         Commands::LsRemote => {
             LsCommand::list_remote_versions();

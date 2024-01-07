@@ -1,9 +1,19 @@
+use crate::file_system::FileSystem;
+
 use dirs::home_dir;
 use std::fs::{remove_file, rename};
 use std::path::Path;
 
 pub struct Versions;
 impl Versions {
+    pub fn switch(version: String) {
+        if self::Versions::already_installed(version.clone()) {
+            FileSystem::create_symlink(version.clone());
+        } else {
+            println!("The version {} doesn't exist in the system.", version);
+            println!("Do: bvm install {} instead", version);
+        }
+    }
     pub fn already_installed(version: String) -> bool {
         let home_dir = home_dir().unwrap().join(".bvm/");
         let version_dir = home_dir.join(version);
