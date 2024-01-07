@@ -15,14 +15,13 @@ impl Versions {
         let home_dir = dirs::home_dir();
 
         if let Some(dir) = home_dir {
-            let zip = dir.join(format!(".bvm/{}/bun.zip", version));
-
             // File to rename
             let from = dir.join(format!(".bvm/{}/bun-darwin-x64", version));
             // New name
             let to = dir.join(format!(".bvm/{}/bin", version));
+            rename(from, to).expect("  ⚠️  Cleaning failed renaming the folder");
 
-            rename(from, to).unwrap_err();
+            let zip = dir.join(format!(".bvm/{}/bun.zip", version));
             remove_file(zip).expect("  ⚠️  Cleaning failed removing the zip file");
         }
     }

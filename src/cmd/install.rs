@@ -1,6 +1,6 @@
+use crate::file_system::FileSystem;
 use crate::installer::Installer;
 use crate::versions::Versions;
-use std::io::{self, Write};
 
 pub struct InstallCommand;
 impl InstallCommand {
@@ -24,5 +24,6 @@ impl InstallCommand {
         Installer::unzip_version(version.clone());
         Versions::clean_dir(version.clone());
         println!("   ✅ Done");
+        FileSystem::create_symlink(version.clone());
     }
 }

@@ -1,5 +1,6 @@
 mod args;
 mod cmd;
+mod file_system;
 mod http;
 mod installer;
 mod versions;
