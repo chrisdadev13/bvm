@@ -1,12 +1,68 @@
 use dirs::home_dir;
-use std::fs::create_dir;
+use std::fs::{create_dir, create_dir_all, rename, set_permissions, File, Permissions};
+use std::io::copy;
 use std::path::Path;
 
 use crate::http;
 
 pub struct Installer;
 impl Installer {
-    pub fn unzip_version(version: String) {}
+    pub fn unzip_version(version: String) {
+        let file_zip = dirs::home_dir()
+            .unwrap()
+            .join(format!(".bvm/{}/bun.zip", version));
+
+        let file = File::open(file_zip.as_path()).unwrap();
+
+        let mut archive = zip::ZipArchive::new(file).unwrap();
+        let destination_directory = dirs::home_dir().unwrap().join(format!(".bvm/{}/", version));
+
+        for i in 0..archive.len() {
+            let mut file = archive.by_index(i).unwrap();
+
+            let file_path = match file.enclosed_name() {
+                Some(path) => path.to_owned(),
+                None => continue,
+            };
+            let mut outpath = destination_directory.clone();
+            outpath.push(file_path);
+
+            {
+                let comment = file.comment();
+                if !comment.is_empty() {
+                    println!("File {i} comment: {comment}");
+                }
+            }
+
+            if (*file.name()).ends_with('/') {
+                println!("File {} extracted to \"{}\"", i, outpath.display());
+                create_dir_all(&outpath).unwrap();
+            } else {
+                println!(
+                    "File {} extracted to \"{}\" ({} bytes)",
+                    i,
+                    outpath.display(),
+                    file.size()
+                );
+                if let Some(p) = outpath.parent() {
+                    if !p.exists() {
+                        create_dir_all(p).unwrap();
+                    }
+                }
+                let mut outfile = File::create(&outpath).unwrap();
+                copy(&mut file, &mut outfile).unwrap();
+            }
+
+            #[cfg(unix)]
+            {
+                use std::os::unix::fs::PermissionsExt;
+
+                if let Some(mode) = file.unix_mode() {
+                    set_permissions(&outpath, Permissions::from_mode(mode)).unwrap();
+                }
+            }
+        }
+    }
     pub fn install_version(version: String) {
         self::Installer::create_versions_dir();
 

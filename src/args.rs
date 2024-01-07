@@ -31,7 +31,7 @@ pub enum Commands {
     /// List available Bun versions to install
     LsRemote,
 
-    /// Print the currently-active Node version
+    /// Print the currently-active Bun version
     Current,
 
     /// Uninstall the specified Node version

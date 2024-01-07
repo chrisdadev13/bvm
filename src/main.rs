@@ -4,23 +4,19 @@ mod http;
 mod installer;
 mod versions;
 
-use std::env;
-
 use args::{Cli, Commands};
 
-use cmd::LsRemoteCommand;
+use cmd::{InstallCommand, LsRemoteCommand};
 
 use clap::Parser;
 
-use installer::Installer;
-
 fn main() {
-    Installer::install_version("v0.5.0".to_string());
-    /*
     let args = Cli::parse();
 
     match args.command {
-        Commands::Install { version } => todo!(),
+        Commands::Install { version } => {
+            InstallCommand::install_version(version);
+        }
         Commands::Use { version } => todo!(),
         Commands::Ls => todo!(),
         Commands::LsRemote => {
@@ -29,5 +25,4 @@ fn main() {
         Commands::Current => todo!(),
         Commands::Uninstall { version } => todo!(),
     }
-    */
 }
