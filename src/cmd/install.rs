@@ -1,5 +1,6 @@
 use crate::installer::Installer;
 use crate::versions::Versions;
+use std::io::{self, Write};
 
 pub struct InstallCommand;
 impl InstallCommand {
@@ -15,9 +16,13 @@ impl InstallCommand {
             return;
         }
 
-        println!("bvm install {} ", version);
+        let bold_start = "\x1b[1m";
+        let bold_end = "\x1b[0m";
+
+        println!("{}bvm install{} {}", bold_start, bold_end, version.clone());
         Installer::install_version(version.clone());
         Installer::unzip_version(version.clone());
         Versions::clean_dir(version.clone());
+        println!("   ✅ Done");
     }
 }

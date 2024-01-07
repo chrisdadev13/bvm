@@ -23,7 +23,7 @@ impl Versions {
             let to = dir.join(format!(".bvm/{}/bin", version));
 
             rename(from, to).unwrap_err();
-            remove_file(zip).unwrap_err();
+            remove_file(zip).expect("  ⚠️  Cleaning failed removing the zip file");
         }
     }
 }

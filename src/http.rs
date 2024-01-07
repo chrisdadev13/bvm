@@ -29,8 +29,6 @@ impl HTTPRequest {
 
         dir.write_all(&buffer)?;
 
-        println!("Version downloaded successfully");
-
         Ok(())
     }
     pub fn bun_registry() -> Result<Vec<BunTag>, Box<dyn Error>> {
