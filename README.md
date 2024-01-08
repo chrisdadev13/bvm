@@ -14,8 +14,7 @@ cargo install && cargo build
 cp ./target/debug/bvm /usr/local/bin
 ```
 
-
-The goal is to eventually migrate the project from Rust to Zig!
+Done!
 
 ```bash
 bvm --help
