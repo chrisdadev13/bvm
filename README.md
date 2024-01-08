@@ -1,14 +1,21 @@
 # (Blazingly Fast) Bun Version Manager 
 
-Bun Version Manager build using Rust that allows you to quickly install and use different versions of Bun via the command line. This is a side project I did in order to learn Rust so is not "production ready", if you want to use it, clone the repo and compile it.
+Bun Version Manager build using Rust that allows you to quickly install and use different versions of Bun via the command line. This is just a side project I did in order to learn Rust, so is not usable at all.
 
+# Installation
+Step 1:
 ```bash
 git clone git@github.com:chrisdadev13/bvm.git && cd bvm 
-cargo install && cargo build
-cp ./target/debug/bvm /usr/local/bin
 ```  
 
-The goal is to eventually migrate the project from Rust to Zig!!
+Step 2:
+```bash
+cargo install && cargo build
+cp ./target/debug/bvm /usr/local/bin
+```
+
+
+The goal is to eventually migrate the project from Rust to Zig!
 
 ```bash
 bvm --help
