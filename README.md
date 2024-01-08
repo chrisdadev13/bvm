@@ -1,6 +1,6 @@
 # (Blazingly Fast) Bun Version Manager 
 
-Bun Version Manager build using Rust that allows you to quickly install and use different versions of Bun via the command line. This is just a side project I did in order to learn Rust, so is not usable at all.
+Bun Version Manager build using Rust that allows you to quickly install and use different versions of Bun via the command line. Since this is just a side project I did in order to learn Rust, it was specifically tailored and tested for systems running on `macosx86_64` architecture. This means it is currently optimized for Mac systems with x86_64 architecture only.
 
 # Installation
 Step 1:
