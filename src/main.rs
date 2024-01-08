@@ -7,7 +7,7 @@ mod versions;
 
 use args::{Cli, Commands};
 
-use cmd::{InstallCommand, LsCommand, Use};
+use cmd::{InstallCommand, LsCommand, UninstallCommand, Use};
 
 use clap::Parser;
 
@@ -21,11 +21,14 @@ fn main() {
         Commands::Use { version } => {
             Use::use_command(version);
         }
-        Commands::Ls => todo!(),
+        Commands::Ls => {
+            LsCommand::list();
+        }
         Commands::LsRemote => {
             LsCommand::list_remote_versions();
         }
-        Commands::Current => todo!(),
-        Commands::Uninstall { version } => todo!(),
+        Commands::Uninstall { version } => {
+            UninstallCommand::uninstall(version);
+        }
     }
 }

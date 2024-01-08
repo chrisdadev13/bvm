@@ -1,6 +1,7 @@
 use dirs::home_dir;
 
 use std::os::unix::fs as unix_fs;
+use std::path::Path;
 use std::path::PathBuf;
 
 pub struct FileSystem;
@@ -17,5 +18,8 @@ impl FileSystem {
 
             unix_fs::symlink(source, destination).expect("Error linking the new version");
         }
+    }
+    pub fn get_last_component_of_path<P: AsRef<Path>>(path: P) -> Option<String> {
+        path.as_ref().file_name()?.to_str().map(String::from)
     }
 }
